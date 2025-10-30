@@ -303,7 +303,7 @@
             }
         }
 
-        // Lógica de Autenticación por Teléfono (SMS)
+        // Lógica de Autenticación por Teléfono (SMS) - MODIFICADA PARA DEBUGGING
         async function signInWithPhone() {
             const phoneNumber = document.getElementById('phoneNumber').value;
             
@@ -326,11 +326,22 @@
                 showMessage(`Código de verificación enviado a ${phoneNumber}.`, 'success');
 
             } catch (error) {
+                // INICIO DE LA MODIFICACIÓN DE DEBUGGING
                 let errorMsg = 'Error al enviar el código SMS. Inténtalo de nuevo.';
-                if (error.code === 'auth/invalid-phone-number') errorMsg = 'El número de teléfono es inválido o el formato es incorrecto.';
-                if (error.code === 'auth/quota-exceeded') errorMsg = 'Se ha excedido la cuota de SMS para este proyecto. Revisa la facturación de Firebase.';
+                
+                if (error.code === 'auth/invalid-phone-number') {
+                    errorMsg = 'El número de teléfono es inválido o el formato es incorrecto.';
+                } else if (error.code === 'auth/quota-exceeded') {
+                    errorMsg = 'Se ha excedido la cuota de SMS para este proyecto. Revisa la facturación de Firebase.';
+                } else if (error.code) {
+                    // MUESTRA EL CÓDIGO DE ERROR DE FIREBASE SI NO ES NINGUNO DE LOS ANTERIORES
+                    errorMsg = `FALLO CRÍTICO: ${error.code}.`;
+                }
+                
                 showMessage(errorMsg, 'error');
+                
                 console.error('Firebase Phone Auth Error:', error.code, error.message);
+                // FIN DE LA MODIFICACIÓN DE DEBUGGING
                 
                 document.getElementById('sendSmsButton').classList.remove('hidden');
                 document.getElementById('verifyCodeContainer').classList.add('hidden');
