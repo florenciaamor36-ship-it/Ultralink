@@ -6,34 +6,57 @@
     <title>UltraLink - Iniciar Sesión</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* [Omitting CSS styles for brevity, assuming you have them] */
+        /* Paleta de Color Azul - Gradientes Personalizados */
         body { 
             background: linear-gradient(135deg, #000000 0%, #0a1128 50%, #000000 100%); 
             font-family: system-ui, -apple-system, sans-serif; 
             min-height: 100vh; 
         } 
-        /* ... (tus estilos) ... */
+        /* Gradiente de Azul para Texto y Resaltado */
         .gradient-text { 
-            background: linear-gradient(135deg, #007CF0 0%, #00DFD8 100%); 
+            background: linear-gradient(135deg, #007CF0 0%, #00DFD8 100%);
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
             background-clip: text; 
         } 
+        /* Botón Principal (Azul Claro) */
         .btn-primary { 
             background: linear-gradient(135deg, #007CF0 0%, #4092ff 100%); 
             transition: all 0.3s ease; 
         } 
+        .btn-primary:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 25px rgba(0, 124, 240, 0.4); 
+        } 
+        /* Botón de Google */
         .btn-google { 
-            background-color: #1f2937; 
+            background-color: #1f2937;
             color: #ffffff; 
             transition: all 0.3s ease; 
             border: 1px solid #374151; 
         } 
+        .btn-google:hover { 
+            background-color: #2a3547;
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); 
+        } 
+        /* Animación Flotante */
+        .floating-animation { 
+            animation: float 3s ease-in-out infinite; 
+        } 
+        @keyframes float { 
+            0%, 100% { transform: translateY(0px); } 
+            50% { transform: translateY(-5px); } 
+        } 
+        /* Estilos de Pestañas */
         .hidden { display: none !important; }
         .tab-active {
             background-color: #0d47a1; 
             color: white;
             box-shadow: 0 2px 10px rgba(0, 124, 240, 0.2);
+        }
+        .tab-inactive:hover {
+            background-color: #1a237e; 
         }
     </style>
     
@@ -132,15 +155,16 @@
         const auth = firebase.auth();
         const googleProvider = new firebase.auth.GoogleAuthProvider();
         
-        // --- FUNCIÓN DE REDIRECCIÓN ---
+        // --- FUNCIÓN DE REDIRECCIÓN GENERAL ---
         function redirectToServices() {
+             // Redirección con un pequeño retraso para mostrar el mensaje de éxito
              setTimeout(() => {
                 window.location.href = 'services.html'; 
             }, 500);
         }
 
-        // --- LÓGICA DE MANEJO DE REDIRECCIÓN EN EL INICIO ---
-        // Esto verifica si el usuario acaba de regresar del pop-up/redirección de Google.
+        // --- LÓGICA CLAVE PARA MANEJAR LA RESPUESTA DE signInWithRedirect ---
+        // DEBE SER DE LO PRIMERO QUE SE EJECUTE al cargar la página.
         auth.getRedirectResult().then((result) => {
             if (result.user) {
                 // Autenticación exitosa después de la redirección
@@ -150,21 +174,20 @@
         }).catch((error) => {
              // Manejo de errores de la redirección (si la persona canceló, etc.)
              let errorMsg = 'Error al iniciar sesión con Google. Inténtalo de nuevo.';
-             if (error.code === 'auth/cancelled-popup-request') errorMsg = 'Cancelaste la solicitud.';
+             if (error.code === 'auth/cancelled-popup-request') errorMsg = 'Solicitud de pop-up cancelada.';
+             if (error.code === 'auth/auth-domain-config-error') errorMsg = 'Error de configuración del dominio.';
              showMessage(errorMsg, 'error');
              console.error('Firebase Google Redirect Error:', error);
         });
 
 
-        // --- CAMBIO PRINCIPAL: onAuthStateChanged ---
-        // Mantiene la lógica para manejar sesiones existentes al cargar la página
+        // --- onAuthStateChanged para sesiones persistentes y redirección inicial ---
         auth.onAuthStateChanged(user => {
             const authCard = document.getElementById('authCard');
-            // Solo ejecuta la redirección si el usuario NO está regresando de getRedirectResult()
+            // Redirige si hay un usuario logueado Y no está en la página de servicios (para evitar loops)
             if (user && window.location.href.indexOf('services.html') === -1) {
                 authCard.classList.add('hidden');
                 showMessage(`¡Sesión activa! Hola, ${user.email || 'usuario'} 👋. Redirigiendo...`, 'success');
-                // Redirige solo si el getRedirectResult no lo ha hecho ya.
                 redirectToServices(); 
             } else if (!user) {
                 authCard.classList.remove('hidden');
@@ -231,13 +254,13 @@
             }
         });
 
-        // --- FUNCIÓN MODIFICADA: Usando REDIRECCIÓN ---
+        // --- FUNCIÓN MODIFICADA: Usando REDIRECCIÓN (signInWithRedirect) ---
         async function signInWithGoogleRedirect() {
             try {
-                // Llama al método de REDIRECCIÓN. Esto te saca de la página.
+                // Esta llamada te saca completamente de la página y te lleva a Google.
                 await auth.signInWithRedirect(googleProvider);
             } catch (error) {
-                // El error aquí solo se manejaría si algo falla ANTES de la redirección.
+                // El error aquí solo se manejaría si algo falla ANTES de la redirección inicial.
                 showMessage('Error al iniciar la redirección de Google.', 'error');
                 console.error('Firebase Google Redirect Init Error:', error);
             }
