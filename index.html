@@ -8,11 +8,12 @@
     <style>
         /* Estilos CSS originales */ 
         body { 
+            /* Se centraliza el fondo en el body de Tailwind */
             background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #000000 100%); 
             font-family: system-ui, -apple-system, sans-serif; 
-            min-height: 100vh;
+            min-height: 100vh; 
         } 
-        /* ... (tus estilos personalizados) ... */
+        /* Los estilos de gradiente se mantienen y se complementan con Tailwind */
         .gradient-border { 
             background: linear-gradient(135deg, #3b4f9e 0%, #ff6b35 100%); 
             padding: 2px; 
@@ -49,111 +50,126 @@
             transform: translateY(-2px); 
             box-shadow: 0 10px 25px rgba(0,0,0,0.15); 
         } 
+        /* ❌ ELIMINADO: Ya no necesitamos el estilo de Facebook */
+        /* .btn-facebook { background-color: #1877f2; transition: all 0.3s ease; } */ 
+        /* .btn-facebook:hover { transform: translateY(-2px); background-color: #0d65d9; box-shadow: 0 10px 25px rgba(24, 119, 242, 0.3); } */ 
+        .floating-animation { 
+            animation: float 3s ease-in-out infinite; 
+        } 
+        @keyframes float { 
+            0%, 100% { transform: translateY(0px); } 
+            50% { transform: translateY(-10px); } 
+        } 
+        /* Estilo para simular una clase 'hidden' si no usas Tailwind */
         .hidden { display: none !important; }
     </style>
-    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
 </head>
-<body class="text-white p-4"> 
+<body class="flex flex-col items-center justify-center text-white p-4">
 
-    <div class="flex flex-col items-center justify-center min-h-screen">
-        <div id="authCard" class="w-full max-w-sm mx-auto p-6 bg-gray-900 rounded-xl shadow-2xl">
-            
-            <header class="text-center mb-6">
-                <h1 class="text-3xl font-bold gradient-text">Ultra Link</h1>
-                <p class="text-gray-400 mt-1">Conecta con el Mundo Digital</p>
-            </header>
-
-            <div class="flex p-1 bg-gray-800 rounded-lg mb-6">
-                <div id="loginTab" onclick="switchTab('login')" class="flex-1 py-3 rounded-lg bg-gray-800 text-white font-semibold transition-all cursor-pointer text-center">
-                    Iniciar Sesión
-                </div>
-                <div id="registerTab" onclick="switchTab('register')" class="flex-1 py-3 rounded-lg bg-transparent text-gray-400 font-semibold border border-gray-800 transition-all hover:border-gray-700 cursor-pointer text-center">
-                    Registrarse
-                </div>
-            </div>
-            
-            <div id="authMessage" class="hidden"></div>
-
-            <form id="authForm" class="space-y-4">
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-400">Correo electrónico</label>
-                    <input type="email" id="email" required class="w-full p-3 mt-1 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500" placeholder="tu_correo@ejemplo.com">
-                </div>
-                <div>
-                    <label for="password" class="block text-sm font-medium text-gray-400">Contraseña</label>
-                    <input type="password" id="password" required class="w-full p-3 mt-1 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500" placeholder="••••••••">
-                </div>
-                
-                <button type="submit" class="btn-primary w-full py-3 rounded-lg font-semibold shadow-lg">
-                    <span id="submitText">Iniciar Sesión</span>
-                </button>
-                
-                <div id="forgotPassword" class="text-right mt-2">
-                    <a href="#" onclick="event.preventDefault(); resetPassword();" class="text-sm text-gray-400 hover:text-orange-400 transition-colors">
-                        ¿Olvidaste tu contraseña?
-                    </a>
-                </div>
-            </form>
-
-            <div class="mt-6 text-center text-gray-500">
-                <p>o continúa con</p>
-            </div>
-
-            <div class="mt-4 space-y-3">
-                <button onclick="signInWithGoogle()" class="btn-google w-full py-3 rounded-lg font-semibold border border-gray-300 flex items-center justify-center shadow-md">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" class="w-5 h-5 mr-3"> Continuar con Google
-                </button>
-                
-                <button onclick="document.getElementById('phoneAuthContainer').classList.remove('hidden'); hideMessage();" class="btn-secondary w-full py-3 rounded-lg font-semibold shadow-lg">
-                    Continuar con Teléfono
-                </button>
-            </div>
-            
-            <div id="phoneAuthContainer" class="mt-6 p-4 bg-gray-800 rounded-lg shadow-inner hidden">
-                <h3 class="text-white font-semibold mb-3">Ingresa tu número</h3>
-                
-                <div class="mb-4">
-                    <label for="phoneNumber" class="block text-sm font-medium text-gray-400">Número (Ej: +54 9 223...)</label>
-                    <input type="tel" id="phoneNumber" placeholder="+54 9..." class="w-full p-3 mt-1 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500" required>
-                </div>
-                
-                <button id="sendSmsButton" onclick="signInWithPhone()" class="btn-primary w-full py-3 rounded-lg font-semibold shadow-lg">
-                    Enviar Código SMS
-                </button>
-                
-                <div id="verifyCodeContainer" class="mt-4 hidden">
-                    <label for="verificationCode" class="block text-sm font-medium text-gray-400">Código de Verificación</label>
-                    <input type="text" id="verificationCode" placeholder="######" class="w-full p-3 mt-1 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500" required>
-                    <button onclick="verifyCode()" class="btn-secondary w-full py-3 mt-3 rounded-lg font-semibold shadow-lg">
-                        Verificar y Entrar
-                    </button>
-                </div>
-            </div>
-            
-            <div id="recaptcha-container"></div> 
-            
-        </div> 
+    <div id="authCard" class="w-full max-w-sm mx-auto my-auto p-6 bg-gray-900 rounded-xl shadow-2xl">
         
-        <footer class="mt-10 text-center text-gray-500 w-full max-w-sm">
-            <div class="flex justify-center space-x-8 mb-4">
-                <div class="text-center">
-                    <p class="text-xl font-bold gradient-text">34+</p>
-                    <p class="text-sm">Servicios</p>
-                </div>
-                <div class="text-center">
-                    <p class="text-xl font-bold gradient-text">24/7</p>
-                    <p class="text-sm">Soporte</p>
-                </div>
-                <div class="text-center">
-                    <p class="text-xl font-bold gradient-text">100%</p>
-                    <p class="text-sm">Seguro</p>
-                </div>
-            </div>
-            <p class="text-xs">&copy; 2025 UltraLink. Todos los derechos reservados.</p>
-        </footer>
-    </div>
+        <header class="text-center mb-6">
+            <h1 class="text-4xl font-extrabold gradient-text">Ultra Link</h1>
+            <p class="text-gray-400 mt-2">Conecta con el Mundo Digital</p>
+        </header>
 
+        <div class="flex p-1 bg-gray-800 rounded-lg mb-6">
+            <div id="loginTab" onclick="switchTab('login')" class="flex-1 py-3 rounded-lg bg-gray-800 text-white font-semibold transition-all cursor-pointer text-center">
+                Iniciar Sesión
+            </div>
+            <div id="registerTab" onclick="switchTab('register')" class="flex-1 py-3 rounded-lg bg-transparent text-gray-400 font-semibold border border-gray-800 transition-all hover:border-gray-700 cursor-pointer text-center">
+                Registrarse
+            </div>
+        </div>
+        
+        <div id="authMessage" class="hidden"></div>
+
+        <form id="authForm" class="space-y-4">
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-400">Correo electrónico</label>
+                <input type="email" id="email" required class="w-full p-3 mt-1 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500" placeholder="tu_correo@ejemplo.com">
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-400">Contraseña</label>
+                <input type="password" id="password" required class="w-full p-3 mt-1 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500" placeholder="••••••••">
+            </div>
+            
+            <button type="submit" class="btn-primary w-full py-3 rounded-lg font-semibold shadow-lg">
+                <span id="submitText">Iniciar Sesión</span>
+            </button>
+            
+            <div id="forgotPassword" class="text-right mt-2">
+                <a href="#" onclick="event.preventDefault(); resetPassword();" class="text-sm text-gray-400 hover:text-orange-400 transition-colors">
+                    ¿Olvidaste tu contraseña?
+                </a>
+            </div>
+        </form>
+
+        <div class="mt-6 text-center text-gray-500 relative">
+            <hr class="border-gray-700 absolute inset-0 my-auto">
+            <p class="inline-block px-3 bg-gray-900 relative z-10">o continúa con</p>
+        </div>
+
+        <div class="mt-4 space-y-3">
+            <button onclick="signInWithGoogle()" class="btn-google w-full py-3 rounded-lg font-semibold border border-gray-300 flex items-center justify-center shadow-md">
+                <svg class="w-5 h-5 mr-3" viewBox="0 0 48 48">
+                    <path fill="#FFC107" d="M43.61 20.086l-1.63-1.61h-21.75v3.18h12.54c-.21 1.25-1.42 4.41-4.79 7.15c-3.1 2.57-7.46 4.1-12.04 4.1c-9.21 0-16.71-7.5-16.71-16.71c0-9.21 7.5-16.71 16.71-16.71c5.22 0 8.24 1.84 10.46 3.99l2.42-2.43c-3.08-2.88-7.05-4.66-12.88-4.66C8.89 3.016 0 11.91 0 22.886c0 10.98 8.89 19.87 19.88 19.87c10.42 0 17.56-6.68 17.56-18.45c0-1.12-.08-2.18-.24-3.18z"/>
+                    <path fill="#FF3D00" d="M6.026 25.106c-.45-1.35-.7-2.81-.7-4.33c0-1.52.25-2.98.7-4.33c1.02-3.09 2.57-5.55 4.54-7.25l3.86 3.12c-1.58 1.4-2.73 3.32-3.37 5.75c-.65 2.43-.65 5.09 0 7.52c.64 2.43 1.79 4.35 3.37 5.75l-3.86 3.12c-1.97-1.7-3.52-4.16-4.54-7.25z"/>
+                    <path fill="#4CAF50" d="M43.61 20.086l-1.63-1.61h-21.75v3.18h12.54c-.21 1.25-1.42 4.41-4.79 7.15c-3.1 2.57-7.46 4.1-12.04 4.1c-9.21 0-16.71-7.5-16.71-16.71c0-9.21 7.5-16.71 16.71-16.71c5.22 0 8.24 1.84 10.46 3.99l2.42-2.43c-3.08-2.88-7.05-4.66-12.88-4.66C8.89 3.016 0 11.91 0 22.886c0 10.98 8.89 19.87 19.88 19.87c10.42 0 17.56-6.68 17.56-18.45c0-1.12-.08-2.18-.24-3.18l-1.63-1.61H21.83v-3.18h21.78z"/>
+                    <path fill="#1976D2" d="M19.88 42.756c5.56 0 10.42-2.3 13.91-6.18l-3.86-3.12c-2.37 2.15-5.59 3.44-9.35 3.44c-3.76 0-7.01-1.28-9.35-3.44l-3.86 3.12c3.49 3.88 8.35 6.18 13.91 6.18z"/>
+                </svg>
+                Continuar con Google
+            </button>
+            
+            <button onclick="document.getElementById('phoneAuthContainer').classList.remove('hidden'); hideMessage();" class="btn-secondary w-full py-3 rounded-lg font-semibold shadow-lg">
+                Continuar con Teléfono
+            </button>
+        </div>
+        
+        <div id="phoneAuthContainer" class="mt-6 p-4 bg-gray-800 rounded-lg shadow-inner hidden">
+            <h3 class="text-white font-semibold mb-3">Ingresa tu número</h3>
+            
+            <div class="mb-4">
+                <label for="phoneNumber" class="block text-sm font-medium text-gray-400">Número (Ej: +54 9 223...)</label>
+                <input type="tel" id="phoneNumber" placeholder="+54 9..." class="w-full p-3 mt-1 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+            </div>
+            
+            <button id="sendSmsButton" onclick="signInWithPhone()" class="btn-primary w-full py-3 rounded-lg font-semibold shadow-lg">
+                Enviar Código SMS
+            </button>
+            
+            <div id="verifyCodeContainer" class="mt-4 hidden">
+                <label for="verificationCode" class="block text-sm font-medium text-gray-400">Código de Verificación</label>
+                <input type="text" id="verificationCode" placeholder="######" class="w-full p-3 mt-1 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                <button onclick="verifyCode()" class="btn-secondary w-full py-3 mt-3 rounded-lg font-semibold shadow-lg">
+                    Verificar y Entrar
+                </button>
+            </div>
+        </div>
+        
+        <div id="recaptcha-container"></div> 
+        
+    </div> 
+    
+    <footer class="mt-10 text-center text-gray-500 w-full max-w-sm">
+        <div class="flex justify-center space-x-8 mb-4">
+            <div class="text-center">
+                <p class="text-xl font-bold gradient-text">34+</p>
+                <p class="text-sm">Servicios</p>
+            </div>
+            <div class="text-center">
+                <p class="text-xl font-bold gradient-text">24/7</p>
+                <p class="text-sm">Soporte</p>
+            </div>
+            <div class="text-center">
+                <p class="text-xl font-bold gradient-text">100%</p>
+                <p class="text-sm">Seguro</p>
+            </div>
+        </div>
+        <p class="text-xs">&copy; 2025 UltraLink. Todos los derechos reservados.</p>
+    </footer>
 
     <script>
         // CONFIGURACIÓN DE FIREBASE
@@ -165,13 +181,13 @@
             messagingSenderId: "352589034055",
             appId: "1:352589034055:web:0680b9da02bf0060717762",
         };
-        
         // Inicializar Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
 
-        // Inicialización de Proveedores
+        // 💡 Inicialización de Proveedores de Auth Social para compatibilidad
         const googleProvider = new firebase.auth.GoogleAuthProvider();
+
         let confirmationResult = null;
 
         // Lógica de Redirección (Si está logueado, redirige)
@@ -181,15 +197,15 @@
                 authCard.classList.add('hidden');
                 showMessage(`¡Sesión activa! Hola, ${user.email || user.phoneNumber || 'usuario'} 👋. Redirigiendo...`, 'success');
                 setTimeout(() => {
-                    window.location.href = 'services.html';
+                    // Cambia 'services.html' por la URL real de tu página de servicios
+                    window.location.href = 'services.html'; 
                 }, 1000);
             } else {
                 authCard.classList.remove('hidden');
             }
         });
 
-        // Funciones de utilidad (switchTab, showMessage, hideMessage, authForm, resetPassword) se mantienen igual
-
+        // Resto de tus funciones (switchTab, showMessage, etc.)
         function switchTab(mode) {
             const loginTab = document.getElementById('loginTab');
             const registerTab = document.getElementById('registerTab');
@@ -199,13 +215,13 @@
             document.getElementById('phoneAuthContainer').classList.add('hidden'); 
             
             if (mode === 'login') {
-                loginTab.className = 'flex-1 py-3 rounded-lg bg-gray-800 text-white font-semibold transition-all';
-                registerTab.className = 'flex-1 py-3 rounded-lg bg-transparent text-gray-400 font-semibold border border-gray-800 transition-all hover:border-gray-700';
+                loginTab.className = 'flex-1 py-3 rounded-lg bg-gray-800 text-white font-semibold transition-all cursor-pointer text-center';
+                registerTab.className = 'flex-1 py-3 rounded-lg bg-transparent text-gray-400 font-semibold border border-gray-800 transition-all hover:border-gray-700 cursor-pointer text-center';
                 submitText.textContent = 'Iniciar Sesión';
                 forgotPassword.classList.remove('hidden');
             } else {
-                loginTab.className = 'flex-1 py-3 rounded-lg bg-transparent text-gray-400 font-semibold border border-gray-800 transition-all hover:border-gray-700';
-                registerTab.className = 'flex-1 py-3 rounded-lg bg-gray-800 text-white font-semibold transition-all';
+                loginTab.className = 'flex-1 py-3 rounded-lg bg-transparent text-gray-400 font-semibold border border-gray-800 transition-all hover:border-gray-700 cursor-pointer text-center';
+                registerTab.className = 'flex-1 py-3 rounded-lg bg-gray-800 text-white font-semibold transition-all cursor-pointer text-center';
                 submitText.textContent = 'Crear Cuenta';
                 forgotPassword.classList.add('hidden');
             }
@@ -252,6 +268,19 @@
             }
         });
 
+        async function signInWithGoogle() {
+            document.getElementById('phoneAuthContainer').classList.add('hidden');
+
+            try {
+                await auth.signInWithPopup(googleProvider);
+            } catch (error) {
+                if (error.code !== 'auth/popup-closed-by-user') {
+                    showMessage('Error al iniciar sesión con Google', 'error');
+                }
+                console.error('Firebase Google Auth Error:', error);
+            }
+        }
+
         async function resetPassword() {
             const email = document.getElementById('email').value;
             if (!email) {
@@ -268,35 +297,7 @@
                 console.error('Firebase Reset Password Error:', error);
             }
         }
-        
-        // 🟢 CORRECCIÓN CLAVE 2: Manejo de errores de Popup/Navegador para Google
-        async function signInWithGoogle() {
-            document.getElementById('phoneAuthContainer').classList.add('hidden');
 
-            try {
-                // Intenta primero con Popup (más rápido)
-                await auth.signInWithPopup(googleProvider);
-            } catch (error) {
-                if (error.code === 'auth/popup-blocked' || error.code === 'auth/operation-not-allowed') {
-                    // Si el popup es bloqueado (error "navegador no seguro" / móvil), usa Redirección
-                    try {
-                        showMessage('El navegador ha bloqueado la ventana emergente. Redirigiendo para continuar...', 'error');
-                        await auth.signInWithRedirect(googleProvider);
-                    } catch (redirectError) {
-                         // Si la redirección falla por algo que no sea "cerrado por el usuario"
-                        if (redirectError.code !== 'auth/popup-closed-by-user') { 
-                            showMessage('Error al iniciar sesión con Google (Redirección).', 'error');
-                        }
-                        console.error('Firebase Google Auth Redirect Error:', redirectError);
-                    }
-                } else if (error.code !== 'auth/popup-closed-by-user') {
-                    showMessage('Error al iniciar sesión con Google.', 'error');
-                    console.error('Firebase Google Auth Popup Error:', error);
-                }
-            }
-        }
-
-        // 📞 Lógica de Autenticación por Teléfono (SMS)
         async function signInWithPhone() {
             const phoneNumber = document.getElementById('phoneNumber').value;
             
@@ -308,17 +309,13 @@
             try {
                 const recaptcha = window.recaptchaVerifier;
                 if (!recaptcha) {
-                    // 🟢 CORRECCIÓN CLAVE 3: Re-renderizar reCAPTCHA si falla la inicialización
-                    // Esto asegura que el reCAPTCHA esté listo
-                    initializeRecaptcha();
-                    showMessage('Inicializando verificación de seguridad (reCAPTCHA), intenta de nuevo.', 'error');
+                    showMessage('Error: El verificador reCAPTCHA no está inicializado.', 'error');
                     return;
                 }
 
                 document.getElementById('sendSmsButton').classList.add('hidden');
                 document.getElementById('verifyCodeContainer').classList.remove('hidden');
 
-                // Enviar el código de verificación
                 confirmationResult = await auth.signInWithPhoneNumber(phoneNumber, recaptcha);
                 showMessage(`Código de verificación enviado a ${phoneNumber}.`, 'success');
 
@@ -326,9 +323,6 @@
                 let errorMsg = 'Error al enviar el código SMS. Inténtalo de nuevo.';
                 if (error.code === 'auth/invalid-phone-number') errorMsg = 'El número de teléfono es inválido o el formato es incorrecto.';
                 if (error.code === 'auth/quota-exceeded') errorMsg = 'Se ha excedido la cuota de SMS para este proyecto. Revisa la facturación de Firebase.';
-                // 🟢 CORRECCIÓN CLAVE 4: Forzar re-renderización del reCAPTCHA en caso de error de SMS/reCAPTCHA
-                initializeRecaptcha(); 
-
                 showMessage(errorMsg, 'error');
                 console.error('Firebase Phone Auth Error:', error.code, error.message);
                 
@@ -361,24 +355,15 @@
             }
         }
 
-        // 📞 Función para inicializar/re-inicializar reCAPTCHA
-        function initializeRecaptcha() {
+        window.addEventListener('load', () => {
             const recaptchaContainer = document.getElementById('recaptcha-container');
             if (recaptchaContainer) {
-                // Si ya existe un reCAPTCHA, lo destruye (para evitar duplicados o errores)
-                if (window.recaptchaVerifier && window.recaptchaVerifier.recaptchaWidgetId !== undefined) {
-                    grecaptcha.reset(window.recaptchaVerifier.recaptchaWidgetId);
-                }
-                
                 window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
-                    'size': 'invisible'
+                    'size': 'invisible' 
                 });
-                recaptchaVerifier.render();
+                recaptchaVerifier.render(); 
             }
-        }
-
-        // Inicialización al cargar la ventana
-        window.addEventListener('load', initializeRecaptcha);
+        });
     </script>
 </body>
 </html>
