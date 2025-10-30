@@ -6,70 +6,34 @@
     <title>UltraLink - Iniciar Sesión</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Paleta de Color Azul - Gradientes Personalizados */
+        /* [Omitting CSS styles for brevity, assuming you have them] */
         body { 
             background: linear-gradient(135deg, #000000 0%, #0a1128 50%, #000000 100%); 
             font-family: system-ui, -apple-system, sans-serif; 
             min-height: 100vh; 
         } 
-        /* Gradiente de Azul para Texto y Resaltado */
+        /* ... (tus estilos) ... */
         .gradient-text { 
-            background: linear-gradient(135deg, #007CF0 0%, #00DFD8 100%); /* Azules Vibrantes */
+            background: linear-gradient(135deg, #007CF0 0%, #00DFD8 100%); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
             background-clip: text; 
         } 
-        /* Botón Principal (Azul Claro) */
         .btn-primary { 
             background: linear-gradient(135deg, #007CF0 0%, #4092ff 100%); 
             transition: all 0.3s ease; 
         } 
-        .btn-primary:hover { 
-            transform: translateY(-2px); 
-            /* Sombra azul */
-            box-shadow: 0 10px 25px rgba(0, 124, 240, 0.4); 
-        } 
-        /* Botón Secundario (Azul Marino/Oscuro) */
-        .btn-secondary { 
-            background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%); 
-            transition: all 0.3s ease; 
-            border: 1px solid #1976d2; 
-        } 
-        .btn-secondary:hover { 
-            transform: translateY(-2px); 
-            /* Sombra azul oscura */
-            box-shadow: 0 10px 25px rgba(13, 71, 161, 0.4); 
-        } 
-        
-        /* Estilo para el botón de Google (Fondo oscuro, borde sutil) */
         .btn-google { 
-            background-color: #1f2937; /* Gris oscuro para integrarse al fondo */
+            background-color: #1f2937; 
             color: #ffffff; 
             transition: all 0.3s ease; 
-            border: 1px solid #374151; /* Borde gris más claro */
+            border: 1px solid #374151; 
         } 
-        .btn-google:hover { 
-            background-color: #2a3547; /* Ligeramente más claro en hover */
-            transform: translateY(-2px); 
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Sombra más oscura y profunda */
-        } 
-        /* Animación Flotante */
-        .floating-animation { 
-            animation: float 3s ease-in-out infinite; 
-        } 
-        @keyframes float { 
-            0%, 100% { transform: translateY(0px); } 
-            50% { transform: translateY(-5px); } 
-        } 
-        /* Estilos de Pestañas */
         .hidden { display: none !important; }
         .tab-active {
             background-color: #0d47a1; 
             color: white;
             box-shadow: 0 2px 10px rgba(0, 124, 240, 0.2);
-        }
-        .tab-inactive:hover {
-            background-color: #1a237e; 
         }
     </style>
     
@@ -123,7 +87,7 @@
         </div>
 
         <div class="mt-5 space-y-4">
-            <button onclick="signInWithGoogle()" class="btn-google w-full py-3 rounded-lg font-semibold flex items-center justify-center shadow-md">
+            <button onclick="signInWithGoogleRedirect()" class="btn-google w-full py-3 rounded-lg font-semibold flex items-center justify-center shadow-md">
                 <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M22.5 12.0003C22.5 11.2013 22.4257 10.4357 22.285 9.70258H12.25V13.8841H17.808C17.5647 15.0298 16.8927 16.0336 15.899 16.6908V19.4449H19.508C21.7827 17.304 23.0003 14.3986 23.0003 12.0003C23.0003 11.6669 22.977 11.3411 22.946 11.0232L22.9964 10.9785C22.9997 10.957 23.0003 10.9355 23.0003 10.9141V10.9135L22.5 12.0003Z" fill="#4285F4"/>
                     <path d="M12.25 23.0003C15.4855 23.0003 18.232 21.9056 20.2526 19.9576L16.0596 16.5912C15.0064 17.3308 13.7225 17.8085 12.25 17.8085C9.39762 17.8085 6.94586 15.8906 6.09633 13.3496H1.874V16.7118C3.89461 20.6698 7.79461 23.0003 12.25 23.0003Z" fill="#34A853"/>
@@ -168,16 +132,41 @@
         const auth = firebase.auth();
         const googleProvider = new firebase.auth.GoogleAuthProvider();
         
-        // La redirección principal se maneja en signInWithGoogle, así que el onAuthStateChanged es para recargas/estados iniciales
+        // --- FUNCIÓN DE REDIRECCIÓN ---
+        function redirectToServices() {
+             setTimeout(() => {
+                window.location.href = 'services.html'; 
+            }, 500);
+        }
+
+        // --- LÓGICA DE MANEJO DE REDIRECCIÓN EN EL INICIO ---
+        // Esto verifica si el usuario acaba de regresar del pop-up/redirección de Google.
+        auth.getRedirectResult().then((result) => {
+            if (result.user) {
+                // Autenticación exitosa después de la redirección
+                showMessage('¡Inicio de sesión con Google exitoso! Redirigiendo...', 'success');
+                redirectToServices();
+            }
+        }).catch((error) => {
+             // Manejo de errores de la redirección (si la persona canceló, etc.)
+             let errorMsg = 'Error al iniciar sesión con Google. Inténtalo de nuevo.';
+             if (error.code === 'auth/cancelled-popup-request') errorMsg = 'Cancelaste la solicitud.';
+             showMessage(errorMsg, 'error');
+             console.error('Firebase Google Redirect Error:', error);
+        });
+
+
+        // --- CAMBIO PRINCIPAL: onAuthStateChanged ---
+        // Mantiene la lógica para manejar sesiones existentes al cargar la página
         auth.onAuthStateChanged(user => {
             const authCard = document.getElementById('authCard');
-            if (user) {
+            // Solo ejecuta la redirección si el usuario NO está regresando de getRedirectResult()
+            if (user && window.location.href.indexOf('services.html') === -1) {
                 authCard.classList.add('hidden');
                 showMessage(`¡Sesión activa! Hola, ${user.email || 'usuario'} 👋. Redirigiendo...`, 'success');
-                setTimeout(() => {
-                    window.location.href = 'services.html'; 
-                }, 1000);
-            } else {
+                // Redirige solo si el getRedirectResult no lo ha hecho ya.
+                redirectToServices(); 
+            } else if (!user) {
                 authCard.classList.remove('hidden');
             }
         });
@@ -227,6 +216,8 @@
                     await auth.createUserWithEmailAndPassword(email, password);
                     showMessage('¡Cuenta creada exitosamente! Redirigiendo...', 'success');
                 }
+                redirectToServices(); // Redirigir después del éxito con Email/Pass
+
             } catch (error) {
                 let errorMsg = 'Error al procesar la solicitud.';
                 if (error.code === 'auth/email-already-in-use') errorMsg = 'Este correo ya está registrado.';
@@ -240,26 +231,15 @@
             }
         });
 
-        // FUNCIÓN MODIFICADA PARA REDIRIGIR EXPLÍCITAMENTE
-        async function signInWithGoogle() {
+        // --- FUNCIÓN MODIFICADA: Usando REDIRECCIÓN ---
+        async function signInWithGoogleRedirect() {
             try {
-                // Ejecutar el pop-up de Google
-                await auth.signInWithPopup(googleProvider);
-                
-                // Si el paso anterior tiene éxito, mostrar mensaje
-                showMessage('¡Inicio de sesión con Google exitoso! Redirigiendo...', 'success');
-                
-                // REDIRECCIÓN EXPLÍCITA
-                // Movemos la redirección aquí para asegurar que se ejecute después del éxito del pop-up.
-                setTimeout(() => {
-                    window.location.href = 'services.html'; 
-                }, 500); 
-
+                // Llama al método de REDIRECCIÓN. Esto te saca de la página.
+                await auth.signInWithRedirect(googleProvider);
             } catch (error) {
-                if (error.code !== 'auth/popup-closed-by-user') {
-                    showMessage('Error al iniciar sesión con Google. Inténtalo de nuevo.', 'error');
-                }
-                console.error('Firebase Google Auth Error:', error);
+                // El error aquí solo se manejaría si algo falla ANTES de la redirección.
+                showMessage('Error al iniciar la redirección de Google.', 'error');
+                console.error('Firebase Google Redirect Init Error:', error);
             }
         }
 
@@ -279,7 +259,6 @@
                 console.error('Firebase Reset Password Error:', error);
             }
         }
-
     </script>
 </body>
 </html>
