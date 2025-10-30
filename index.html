@@ -134,7 +134,7 @@
             </button>
         </div>
         
-        </div> 
+    </div> 
     
     <footer class="mt-10 text-center text-gray-500 w-full max-w-sm">
         <div class="flex justify-center space-x-8 mb-4">
@@ -168,13 +168,12 @@
         const auth = firebase.auth();
         const googleProvider = new firebase.auth.GoogleAuthProvider();
         
-        // NO NECESITAMOS confirmationResult YA QUE ELIMINAMOS TELÉFONO
-
+        // La redirección principal se maneja en signInWithGoogle, así que el onAuthStateChanged es para recargas/estados iniciales
         auth.onAuthStateChanged(user => {
             const authCard = document.getElementById('authCard');
             if (user) {
                 authCard.classList.add('hidden');
-                showMessage(`¡Sesión activa! Hola, ${user.email || user.phoneNumber || 'usuario'} 👋. Redirigiendo...`, 'success');
+                showMessage(`¡Sesión activa! Hola, ${user.email || 'usuario'} 👋. Redirigiendo...`, 'success');
                 setTimeout(() => {
                     window.location.href = 'services.html'; 
                 }, 1000);
@@ -188,8 +187,6 @@
             const registerTab = document.getElementById('registerTab');
             const submitText = document.getElementById('submitText');
             const forgotPassword = document.getElementById('forgotPassword');
-            
-            // ELIMINAMOS LA LÍNEA QUE ESCONDÍA EL TELÉFONO
             
             if (mode === 'login') {
                 loginTab.className = 'flex-1 py-3 rounded-xl tab-active font-semibold transition-all cursor-pointer text-center';
@@ -221,8 +218,6 @@
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const isLogin = document.getElementById('loginTab').className.includes('tab-active');
-            
-            // ELIMINAMOS LA LÍNEA QUE ESCONDÍA EL TELÉFONO
 
             try {
                 if (isLogin) {
@@ -245,14 +240,24 @@
             }
         });
 
+        // FUNCIÓN MODIFICADA PARA REDIRIGIR EXPLÍCITAMENTE
         async function signInWithGoogle() {
-            // ELIMINAMOS LA LÍNEA QUE ESCONDÍA EL TELÉFONO
-            
             try {
+                // Ejecutar el pop-up de Google
                 await auth.signInWithPopup(googleProvider);
+                
+                // Si el paso anterior tiene éxito, mostrar mensaje
+                showMessage('¡Inicio de sesión con Google exitoso! Redirigiendo...', 'success');
+                
+                // REDIRECCIÓN EXPLÍCITA
+                // Movemos la redirección aquí para asegurar que se ejecute después del éxito del pop-up.
+                setTimeout(() => {
+                    window.location.href = 'services.html'; 
+                }, 500); 
+
             } catch (error) {
                 if (error.code !== 'auth/popup-closed-by-user') {
-                    showMessage('Error al iniciar sesión con Google', 'error');
+                    showMessage('Error al iniciar sesión con Google. Inténtalo de nuevo.', 'error');
                 }
                 console.error('Firebase Google Auth Error:', error);
             }
@@ -275,8 +280,6 @@
             }
         }
 
-        // FUNCIONES DE TELÉFONO (signInWithPhone, verifyCode) Y EVENT LISTENER DE RECAPTCHA ELIMINADOS
-        
     </script>
 </body>
 </html>
