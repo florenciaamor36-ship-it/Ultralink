@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UltraLink - Iniciar Sesión</title>
+    <title>InternetGM - Iniciar Sesión</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Paleta de Color Azul - Gradientes Personalizados */
@@ -27,18 +27,6 @@
         .btn-primary:hover { 
             transform: translateY(-2px); 
             box-shadow: 0 10px 25px rgba(0, 124, 240, 0.4); 
-        } 
-        /* Botón de Google */
-        .btn-google { 
-            background-color: #1f2937;
-            color: #ffffff; 
-            transition: all 0.3s ease; 
-            border: 1px solid #374151; 
-        } 
-        .btn-google:hover { 
-            background-color: #2a3547;
-            transform: translateY(-2px); 
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); 
         } 
         /* Animación Flotante */
         .floating-animation { 
@@ -68,7 +56,7 @@
     <div id="authCard" class="w-full max-w-sm mx-auto my-auto p-8 bg-gray-900 rounded-2xl shadow-2xl border border-gray-800">
         
         <header class="text-center mb-8">
-            <h1 class="text-4xl font-extrabold gradient-text floating-animation">Ultra Link</h1>
+            <h1 class="text-4xl font-extrabold gradient-text floating-animation">InternetGM</h1>
             <p class="text-gray-400 mt-2">Conecta con el Mundo Digital</p>
         </header>
 
@@ -103,25 +91,8 @@
                 </a>
             </div>
         </form>
-
-        <div class="mt-7 text-center text-gray-500 relative">
-            <hr class="border-gray-700 absolute inset-0 my-auto">
-            <p class="inline-block px-3 bg-gray-900 relative z-10 text-sm">o continúa con</p>
-        </div>
-
-        <div class="mt-5 space-y-4">
-            <button onclick="signInWithGoogleRedirect()" class="btn-google w-full py-3 rounded-lg font-semibold flex items-center justify-center shadow-md">
-                <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.5 12.0003C22.5 11.2013 22.4257 10.4357 22.285 9.70258H12.25V13.8841H17.808C17.5647 15.0298 16.8927 16.0336 15.899 16.6908V19.4449H19.508C21.7827 17.304 23.0003 14.3986 23.0003 12.0003C23.0003 11.6669 22.977 11.3411 22.946 11.0232L22.9964 10.9785C22.9997 10.957 23.0003 10.9355 23.0003 10.9141V10.9135L22.5 12.0003Z" fill="#4285F4"/>
-                    <path d="M12.25 23.0003C15.4855 23.0003 18.232 21.9056 20.2526 19.9576L16.0596 16.5912C15.0064 17.3308 13.7225 17.8085 12.25 17.8085C9.39762 17.8085 6.94586 15.8906 6.09633 13.3496H1.874V16.7118C3.89461 20.6698 7.79461 23.0003 12.25 23.0003Z" fill="#34A853"/>
-                    <path d="M6.09633 13.3496C5.8778 12.7208 5.76707 12.0003 5.76707 11.35C5.76707 10.7077 5.8778 10.0094 6.08418 9.39097V6.01465H1.874C1.10979 7.64756 0.612061 9.47956 0.612061 11.35C0.612061 13.2205 1.10979 15.0525 1.874 16.6854L6.09633 13.3496Z" fill="#FBBC05"/>
-                    <path d="M12.25 5.2503C14.072 5.2503 15.6318 5.95292 16.9455 7.1511L20.2526 3.82476C18.232 1.87679 15.4855 0.750305 12.25 0.750305C7.79461 0.750305 3.89461 3.08085 1.874 7.03886L6.08418 10.3951C6.94586 7.85408 9.39762 5.93623 12.25 5.93623C12.75 5.93623 13.2642 5.99222 13.7642 6.10425L13.7667 6.10492L13.7667 6.10492L12.25 5.2503Z" fill="#EA4335"/>
-                </svg>
-                Continuar con Google
-            </button>
-        </div>
         
-    </div> 
+        </div> 
     
     <footer class="mt-10 text-center text-gray-500 w-full max-w-sm">
         <div class="flex justify-center space-x-8 mb-4">
@@ -138,7 +109,7 @@
                 <p class="text-sm">Seguro</p>
             </div>
         </div>
-        <p class="text-xs">&copy; 2025 UltraLink. Todos los derechos reservados.</p>
+        <p class="text-xs">&copy; 2025 InternetGM. Todos los derechos reservados.</p>
     </footer>
 
     <script>
@@ -153,7 +124,6 @@
         };
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
-        const googleProvider = new firebase.auth.GoogleAuthProvider();
         
         // --- FUNCIÓN DE REDIRECCIÓN GENERAL ---
         function redirectToServices() {
@@ -162,24 +132,6 @@
                 window.location.href = 'services.html'; 
             }, 500);
         }
-
-        // --- LÓGICA CLAVE PARA MANEJAR LA RESPUESTA DE signInWithRedirect ---
-        // DEBE SER DE LO PRIMERO QUE SE EJECUTE al cargar la página.
-        auth.getRedirectResult().then((result) => {
-            if (result.user) {
-                // Autenticación exitosa después de la redirección
-                showMessage('¡Inicio de sesión con Google exitoso! Redirigiendo...', 'success');
-                redirectToServices();
-            }
-        }).catch((error) => {
-             // Manejo de errores de la redirección (si la persona canceló, etc.)
-             let errorMsg = 'Error al iniciar sesión con Google. Inténtalo de nuevo.';
-             if (error.code === 'auth/cancelled-popup-request') errorMsg = 'Solicitud de pop-up cancelada.';
-             if (error.code === 'auth/auth-domain-config-error') errorMsg = 'Error de configuración del dominio.';
-             showMessage(errorMsg, 'error');
-             console.error('Firebase Google Redirect Error:', error);
-        });
-
 
         // --- onAuthStateChanged para sesiones persistentes y redirección inicial ---
         auth.onAuthStateChanged(user => {
@@ -253,18 +205,6 @@
                 console.error('Firebase Error:', error.code, error.message);
             }
         });
-
-        // --- FUNCIÓN MODIFICADA: Usando REDIRECCIÓN (signInWithRedirect) ---
-        async function signInWithGoogleRedirect() {
-            try {
-                // Esta llamada te saca completamente de la página y te lleva a Google.
-                await auth.signInWithRedirect(googleProvider);
-            } catch (error) {
-                // El error aquí solo se manejaría si algo falla ANTES de la redirección inicial.
-                showMessage('Error al iniciar la redirección de Google.', 'error');
-                console.error('Firebase Google Redirect Init Error:', error);
-            }
-        }
 
         async function resetPassword() {
             const email = document.getElementById('email').value;
