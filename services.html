@@ -4,61 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Título y descripción para Google -->
-    <title>UltraLink - Streaming, VPS, Internet Ilimitado | Precios para Revendedores</title>
+    <title>InternetGM - Streaming, VPS, Internet Ilimitado | Precios para Revendedores</title>
     <meta name="description" content="34+ servicios digitales: Netflix, Spotify, Disney+, VPS, Internet Ilimitado Personal Argentina. Precios exclusivos para revendedores. Soporte 24/7.">
-    <meta name="keywords" content="streaming argentina, netflix, spotify, disney plus, vps argentina, internet ilimitado personal, chatgpt plus, canva pro, ultralink">
-    <meta name="author" content="UltraLink">
+    <meta name="keywords" content="streaming argentina, netflix, spotify, disney plus, vps argentina, internet ilimitado personal, chatgpt plus, canva pro, internetgm">
+    <meta name="author" content="InternetGM">
 
-    <!-- Open Graph para Facebook, WhatsApp, LinkedIn -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="UltraLink - Streaming & Internet | 34+ Servicios Digitales">
+    <meta property="og:title" content="InternetGM - Streaming & Internet | 34+ Servicios Digitales">
     <meta property="og:description" content="Los mejores servicios de streaming, VPS e Internet Ilimitado. Precios exclusivos para revendedores. Soporte 24/7 🚀">
     <meta property="og:url" content="https://ultralink-xi.vercel.app">
-    <meta property="og:site_name" content="UltraLink">
+    <meta property="og:site_name" content="InternetGM">
 
-    <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="UltraLink - 34+ Servicios Digitales">
+    <meta name="twitter:title" content="InternetGM - 34+ Servicios Digitales">
     <meta name="twitter:description" content="Streaming, VPS, Internet Ilimitado. Precios para revendedores 🚀">
 
-    <!-- Idioma y región -->
     <meta name="language" content="Spanish">
     <meta name="geo.region" content="AR">
     <meta name="geo.placename" content="Argentina">
 
-    <!-- Favicon (icono de la pestaña) -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* ESTILOS DE INTERNETGM */
         body {
-            background-color: #000000;
+            /* Fondo de la plantilla de Login */
+            background: linear-gradient(135deg, #000000 0%, #0a1128 50%, #000000 100%);
             font-family: system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
         }
+        
+        /* Gradiente de Azul para Texto y Resaltado */
+        .gradient-text {
+            background: linear-gradient(135deg, #007CF0 0%, #00DFD8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Fondo del Hero Section (Mismo que el body de Login, pero ajustado para la sección) */
         .gradient-bg {
-            background: linear-gradient(135deg, #3b4f9e 0%, #ff6b35 100%);
+            background: linear-gradient(135deg, #0a1128 0%, #0d47a1 100%);
         }
+        
         .card-hover {
             transition: all 0.3s ease;
         }
         .card-hover:hover {
             transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 124, 240, 0.2);
         }
+        
+        /* Botón Principal (Azul Claro) */
         .btn-primary {
-            background-color: #ff6b35;
+            background: linear-gradient(135deg, #007CF0 0%, #4092ff 100%);
             transition: all 0.3s ease;
         }
         .btn-primary:hover {
-            background-color: #e85a2a;
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(0, 124, 240, 0.4);
         }
+        
+        /* Botón Secundario (Azul Oscuro) */
         .btn-secondary {
-            background-color: #3b4f9e;
+            background-color: #0d47a1;
             transition: all 0.3s ease;
         }
         .btn-secondary:hover {
-            background-color: #2f3e7e;
+            background-color: #0a3a83;
         }
+        
         .btn-facebook {
             background-color: #1877f2;
             transition: all 0.3s ease;
@@ -72,12 +88,12 @@
         }
         .payment-method:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(255, 107, 53, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 124, 240, 0.2);
         }
         .payment-method.selected {
-            border-color: #ff6b35 !important;
-            background-color: rgba(255, 107, 53, 0.15) !important;
-            box-shadow: 0 0 15px rgba(255, 107, 53, 0.3);
+            border-color: #007CF0 !important;
+            background-color: rgba(0, 124, 240, 0.15) !important;
+            box-shadow: 0 0 15px rgba(0, 124, 240, 0.3);
         }
         
         /* Arreglar reloj en móviles */
@@ -98,19 +114,64 @@
                 margin: 1rem;
             }
         }
+
+        /* Estilos para la sección de Pago Manual (NUEVOS) */
+        .payment-manual-box {
+            background-color: #1f2937; /* Gray-800 */
+            border: 1px dashed #4b5563; /* Gray-600 */
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+        .payment-detail {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            gap: 10px;
+        }
+        .payment-detail span {
+            font-weight: bold;
+            color: #d1d5db; /* Gray-300 */
+            width: 70px; /* Asegura el alineamiento */
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+        .payment-detail input {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #4b5563;
+            background-color: #374151; /* Gray-700 */
+            color: white;
+            cursor: default;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .payment-detail button {
+            background-color: #007CF0;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 12px;
+            flex-shrink: 0;
+            transition: background-color 0.3s;
+        }
+        .payment-detail button:hover {
+            background-color: #0056b3;
+        }
     </style>
 
-    <!-- Schema.org para Google (Rich Snippets) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "UltraLink",
+      "name": "InternetGM",
       "description": "Servicios de streaming, VPS e internet ilimitado",
       "url": "https://ultralink-xi.vercel.app",
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+54-9-3764-327823",
+        "telephone": "+54-9-223-305-7536",
         "contactType": "Customer Service",
         "availableLanguage": "Spanish"
       },
@@ -123,18 +184,16 @@
     </script>
 </head>
 <body>
-    <!-- Header -->
     <header class="bg-black border-b border-gray-800 sticky top-0 z-50">
         <div class="container mx-auto px-3 py-3">
             <div class="flex items-center justify-between gap-2">
                 <div class="flex items-center space-x-2">
-                    <svg class="w-6 h-6 md:w-8 md:h-8" style="color: #ff6b35;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-6 h-6 md:w-8 md:h-8 gradient-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                     </svg>
                     <div>
                         <div class="flex items-baseline">
-                            <span class="text-lg md:text-2xl font-bold" style="color: #3b4f9e;">Ultra</span>
-                            <span class="text-lg md:text-2xl font-bold" style="color: #ff6b35;">Link</span>
+                            <span class="text-lg md:text-2xl font-extrabold gradient-text">InternetGM</span>
                         </div>
                         <p class="text-gray-500 text-[9px] md:text-xs hidden sm:block">Conecta con el Mundo Digital</p>
                     </div>
@@ -154,7 +213,7 @@
                         <span id="cartCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-[9px] rounded-full w-4 h-4 flex items-center justify-center font-bold">0</span>
                     </button>
                     
-                    <a href="https://wa.me/5493764327823?text=Hola!%20Necesito%20información" target="_blank" class="btn-secondary px-2 md:px-4 py-2 rounded-lg flex items-center space-x-1 text-white font-semibold text-xs md:text-base" aria-label="Contactar por WhatsApp">
+                    <a href="https://wa.me/5492233057536?text=Hola!%20Necesito%20información" target="_blank" class="btn-secondary px-2 md:px-4 py-2 rounded-lg flex items-center space-x-1 text-white font-semibold text-xs md:text-base" aria-label="Contactar por WhatsApp">
                         <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                         </svg>
@@ -165,7 +224,6 @@
         </div>
     </header>
 
-    <!-- Cart Modal -->
     <div id="cartModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden items-center justify-center p-3" onclick="if(event.target === this) toggleCart()">
         <div class="bg-gray-900 rounded-xl w-full max-w-2xl modal-content overflow-hidden border border-gray-700" onclick="event.stopPropagation()">
             <div class="p-4 border-b border-gray-700 flex items-center justify-between bg-gray-800 sticky top-0 z-10">
@@ -197,11 +255,10 @@
         </div>
     </div>
 
-    <!-- Payment Modal -->
     <div id="paymentModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden items-center justify-center p-3" onclick="if(event.target === this) closePaymentModal()">
         <div class="bg-gray-900 rounded-xl w-full max-w-3xl modal-content overflow-y-auto border border-gray-700" style="max-height: 90vh;" onclick="event.stopPropagation()">
             <div class="p-4 border-b border-gray-700 flex items-center justify-between sticky top-0 bg-gray-800 z-10">
-                <h2 class="text-lg md:text-2xl font-bold text-white">💳 Método de Pago</h2>
+                <h2 class="text-lg md:text-2xl font-bold text-white">💳 Finalizar Compra</h2>
                 <button onclick="closePaymentModal()" class="text-gray-400 hover:text-white p-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -210,7 +267,6 @@
             </div>
             
             <div class="p-4">
-                <!-- Resumen del pedido -->
                 <div class="bg-gray-800 rounded-lg p-3 md:p-4 mb-4">
                     <h3 class="text-white font-semibold mb-2 text-sm md:text-base">📋 Resumen del Pedido</h3>
                     <div id="orderSummary" class="text-xs md:text-sm text-gray-300 space-y-1"></div>
@@ -225,153 +281,69 @@
                     </div>
                 </div>
 
-                <!-- Métodos de pago -->
-                <h3 class="text-white font-semibold mb-3 text-sm md:text-base">Selecciona tu método de pago:</h3>
-                <div class="grid grid-cols-2 gap-2 md:gap-3 mb-4">
-                    <!-- Transferencia -->
-                    <div class="payment-method bg-gray-800 rounded-lg p-3 border-2 border-gray-700" onclick="selectPaymentMethod('transferencia')">
-                        <div class="flex flex-col items-center gap-2 text-center">
-                            <span class="text-2xl md:text-3xl">🏦</span>
-                            <div>
-                                <p class="text-white font-semibold text-xs md:text-sm">Transferencia</p>
-                                <p class="text-gray-400 text-[10px]">Bancaria</p>
-                            </div>
+                <div class="bg-gray-800 rounded-lg p-3 md:p-4 mb-4">
+                    <h4 class="text-white font-semibold mb-3 text-sm md:text-base">👤 Tus Datos:</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-gray-300 text-xs mb-1">Nombre Completo *</label>
+                            <input type="text" id="customerName" required class="w-full bg-gray-700 text-white px-3 py-2 rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none text-sm" oninput="checkIfCanSend()">
                         </div>
-                    </div>
-
-                    <!-- Billetera Virtual -->
-                    <div class="payment-method bg-gray-800 rounded-lg p-3 border-2 border-gray-700" onclick="selectPaymentMethod('billetera')">
-                        <div class="flex flex-col items-center gap-2 text-center">
-                            <span class="text-2xl md:text-3xl">💳</span>
-                            <div>
-                                <p class="text-white font-semibold text-xs md:text-sm">Billetera</p>
-                                <p class="text-gray-400 text-[10px]">Virtual</p>
-                            </div>
+                        <div>
+                            <label class="block text-gray-300 text-xs mb-1">Email *</label>
+                            <input type="email" id="customerEmail" required class="w-full bg-gray-700 text-white px-3 py-2 rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none text-sm" oninput="checkIfCanSend()">
                         </div>
-                    </div>
-
-                    <!-- Mercado Pago -->
-                    <div class="payment-method bg-gray-800 rounded-lg p-3 border-2 border-gray-700" onclick="selectPaymentMethod('mercadopago')">
-                        <div class="flex flex-col items-center gap-2 text-center">
-                            <span class="text-2xl md:text-3xl">💰</span>
-                            <div>
-                                <p class="text-white font-semibold text-xs md:text-sm">Mercado Pago</p>
-                                <p class="text-gray-400 text-[10px]">Link de pago</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Binance -->
-                    <div class="payment-method bg-gray-800 rounded-lg p-3 border-2 border-gray-700" onclick="selectPaymentMethod('binance')">
-                        <div class="flex flex-col items-center gap-2 text-center">
-                            <span class="text-2xl md:text-3xl">₿</span>
-                            <div>
-                                <p class="text-white font-semibold text-xs md:text-sm">Binance</p>
-                                <p class="text-gray-400 text-[10px]">USDT</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Pago con Tarjeta (NUEVO) -->
-                    <div class="payment-method bg-gray-800 rounded-lg p-3 border-2 border-gray-700 col-span-2" onclick="selectPaymentMethod('tarjeta')">
-                        <div class="flex flex-col items-center gap-2 text-center">
-                            <span class="text-2xl md:text-3xl">💳</span>
-                            <div>
-                                <p class="text-white font-semibold text-xs md:text-sm">Pago con Tarjeta</p>
-                                <p class="text-gray-400 text-[10px]">Débito o Crédito</p>
-                            </div>
+                        <div>
+                            <label class="block text-gray-300 text-xs mb-1">Teléfono / WhatsApp *</label>
+                            <input type="tel" id="customerPhone" required class="w-full bg-gray-700 text-white px-3 py-2 rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none text-sm" oninput="checkIfCanSend()">
                         </div>
                     </div>
                 </div>
 
-                <!-- Información de pago -->
-                <div id="paymentInfo" class="hidden">
-                    <div class="bg-gray-800 rounded-lg p-3 md:p-4 mb-4">
-                        <h4 class="text-white font-semibold mb-2 text-sm md:text-base">📄 Datos para el pago:</h4>
-                        <div id="paymentDetails" class="text-gray-300 text-xs md:text-sm space-y-2"></div>
+                <h3 class="text-white font-semibold mb-3 text-sm md:text-base">1. Pagar Online</h3>
+                <p class="text-gray-400 text-xs mb-3">Serás redirigido a Mercado Pago. En móvil, se intentará abrir la app.</p>
+
+                <button type="button" onclick="redirectToMercadoPagoSimulado()" id="mpRedirectBtn" class="w-full btn-primary py-3 rounded-lg font-semibold text-white flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-xs md:text-sm">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                    </svg>
+                    Pagar con Mercado Pago
+                </button>
+
+                <h3 class="text-white font-semibold mb-3 mt-6 text-sm md:text-base">2. Pagar por Transferencia</h3>
+                <p class="text-gray-400 text-xs mb-3">Realiza el pago y envíanos tu comprobante por WhatsApp.</p>
+
+                <div class="payment-manual-box">
+                    <p class="text-white font-semibold mb-3 text-sm">Datos para Transferencia:</p>
+                    
+                    <div class="payment-detail">
+                        <span>Alias:</span>
+                        <input type="text" value="INTERNET.GM.MP" id="alias-mp" readonly class="text-xs">
+                        <button onclick="copyToClipboard('alias-mp')">Copiar</button>
+                    </div>
+                    
+                    <div class="payment-detail">
+                        <span>CVU/CBU:</span>
+                        <input type="text" value="0000000000000000000000" id="cvu-mp" readonly class="text-xs">
+                        <button onclick="copyToClipboard('cvu-mp')">Copiar</button>
                     </div>
 
-                    <!-- Datos del cliente -->
-                    <div class="bg-gray-800 rounded-lg p-3 md:p-4 mb-4">
-                        <h4 class="text-white font-semibold mb-3 text-sm md:text-base">👤 Tus Datos:</h4>
-                        <div class="space-y-3">
-                            <div>
-                                <label class="block text-gray-300 text-xs mb-1">Nombre Completo *</label>
-                                <input type="text" id="customerName" required class="w-full bg-gray-700 text-white px-3 py-2 rounded-lg border border-gray-600 focus:border-orange-500 focus:outline-none text-sm" oninput="checkIfCanSend()">
-                            </div>
-                            <div>
-                                <label class="block text-gray-300 text-xs mb-1">Email *</label>
-                                <input type="email" id="customerEmail" required class="w-full bg-gray-700 text-white px-3 py-2 rounded-lg border border-gray-600 focus:border-orange-500 focus:outline-none text-sm" oninput="checkIfCanSend()">
-                            </div>
-                            <div>
-                                <label class="block text-gray-300 text-xs mb-1">Teléfono / WhatsApp *</label>
-                                <input type="tel" id="customerPhone" required class="w-full bg-gray-700 text-white px-3 py-2 rounded-lg border border-gray-600 focus:border-orange-500 focus:outline-none text-sm" oninput="checkIfCanSend()">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Formulario de tarjeta (solo visible cuando se selecciona pago con tarjeta) -->
-                    <div id="cardFormSection" class="hidden bg-gray-800 rounded-lg p-3 md:p-4 mb-4 border-2 border-orange-500">
-                        <h4 class="text-white font-semibold mb-2 text-sm md:text-base">💳 Datos de Tarjeta *</h4>
-                        <p class="text-gray-400 text-xs mb-3">Completa los datos de tu tarjeta. Esta información es cifrada de forma segura y no es almacenada en nuestros servidores.</p>
-                        <div class="space-y-3">
-                            <div>
-                                <label class="block text-gray-300 text-xs mb-1">Número de Tarjeta *</label>
-                                <input type="text" id="cardNumber" maxlength="19" placeholder="1234 5678 9012 3456" class="w-full bg-gray-700 text-white px-3 py-2 rounded-lg border border-gray-600 focus:border-orange-500 focus:outline-none text-sm" oninput="checkIfCanSend()">
-                            </div>
-                            <div>
-                                <label class="block text-gray-300 text-xs mb-1">Nombre en la Tarjeta *</label>
-                                <input type="text" id="cardName" placeholder="JUAN PEREZ" class="w-full bg-gray-700 text-white px-3 py-2 rounded-lg border border-gray-600 focus:border-orange-500 focus:outline-none text-sm uppercase" oninput="checkIfCanSend()">
-                            </div>
-                            <div class="grid grid-cols-3 gap-2">
-                                <div>
-                                    <label class="block text-gray-300 text-xs mb-1">Venc. (MM/AA) *</label>
-                                    <input type="text" id="cardExpiry" maxlength="5" placeholder="12/25" class="w-full bg-gray-700 text-white px-3 py-2 rounded-lg border border-gray-600 focus:border-orange-500 focus:outline-none text-sm" oninput="checkIfCanSend()">
-                                </div>
-                                <div>
-                                    <label class="block text-gray-300 text-xs mb-1">CVV *</label>
-                                    <input type="text" id="cardCVV" maxlength="4" placeholder="123" class="w-full bg-gray-700 text-white px-3 py-2 rounded-lg border border-gray-600 focus:border-orange-500 focus:outline-none text-sm" oninput="checkIfCanSend()">
-                                </div>
-                                <div>
-                                    <label class="block text-gray-300 text-xs mb-1">DNI *</label>
-                                    <input type="text" id="cardDNI" placeholder="12345678" class="w-full bg-gray-700 text-white px-3 py-2 rounded-lg border border-gray-600 focus:border-orange-500 focus:outline-none text-sm" oninput="checkIfCanSend()">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Upload del comprobante (oculto para pago con tarjeta) -->
-                    <div id="proofSection" class="bg-gray-800 rounded-lg p-3 md:p-4 mb-4">
-                        <h4 class="text-white font-semibold mb-2 text-sm md:text-base">📎 Subir comprobante:</h4>
-                        <input type="file" id="proofInput" accept="image/*" class="hidden" onchange="handleFileSelect(event)">
-                        <button type="button" onclick="document.getElementById('proofInput').click()" class="w-full bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg flex items-center justify-center gap-2 mb-3 text-xs md:text-sm">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                    <div class="border-t border-gray-700 pt-3 mt-3">
+                        <a href="https://wa.me/5492233057536?text=Hola!%20Acabo%20de%20hacer%20una%20transferencia.%20Aquí%20está%20el%20comprobante:" target="_blank" class="w-full btn-secondary py-3 rounded-lg font-semibold text-white flex items-center justify-center gap-2 text-xs md:text-sm">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                             </svg>
-                            Seleccionar archivo
-                        </button>
-                        <div id="filePreview" class="hidden">
-                            <img id="previewImage" class="w-full rounded-lg mb-2 max-h-48 object-contain bg-gray-700">
-                            <p id="fileName" class="text-gray-400 text-xs text-center mb-2"></p>
-                        </div>
+                            Enviar Comprobante por WhatsApp
+                        </a>
                     </div>
 
-                    <button type="button" onclick="sendOrderToWhatsApp()" id="sendOrderBtn" class="w-full btn-primary py-3 rounded-lg font-semibold text-white flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-xs md:text-sm" disabled>
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                        </svg>
-                        Enviar Pedido por WhatsApp
-                    </button>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Hero Section -->
     <div class="py-8 md:py-16 px-3 gradient-bg">
         <div class="container mx-auto text-center">
-            <h1 class="text-2xl md:text-5xl font-bold text-white mb-3 md:mb-4">
-                ¡Ofertas Exclusivas! 🎉
+            <h1 class="text-2xl md:text-5xl font-extrabold text-white mb-3 md:mb-4">
+                <span class="gradient-text">¡Ofertas Exclusivas! 🎉</span>
             </h1>
             <p class="text-base md:text-2xl text-white opacity-90 mb-6 md:mb-8">
                 Precios exclusivos para revendedores
@@ -397,7 +369,6 @@
         </div>
     </div>
 
-    <!-- Filters -->
     <div class="container mx-auto px-3 py-6 md:py-8">
         <div class="flex flex-col gap-3 mb-6">
             <div class="relative">
@@ -424,26 +395,22 @@
             </div>
         </div>
         
-        <!--Products Grid -->
         <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-            <!-- Products will be inserted here -->
             <div class="col-span-full text-center text-gray-400 py-12">Cargando productos...</div>
         </div>
     </div>
 
-    <!-- Telegram & Facebook Section -->
     <div class="container mx-auto px-3 py-8 md:py-16">
-        <h2 class="text-xl md:text-4xl font-bold text-center mb-8 md:mb-12" style="background: linear-gradient(135deg, #3b4f9e 0%, #ff6b35 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        <h2 class="text-xl md:text-4xl font-extrabold text-center mb-8 md:mb-12 gradient-text">
             🌟 Únete a Nuestra Comunidad
         </h2>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
-            <!-- APK Mods Channel -->
             <div class="bg-gray-900 rounded-xl p-4 md:p-6 border border-gray-800 card-hover">
                 <div class="text-center mb-3">
                     <span class="text-4xl md:text-5xl">💻</span>
                 </div>
-                <h3 class="text-base md:text-xl font-bold text-white mb-2 text-center">Ultra Link APK Mod</h3>
+                <h3 class="text-base md:text-xl font-bold text-white mb-2 text-center">InternetGM APK Mod</h3>
                 <p class="text-gray-400 text-xs md:text-sm mb-3 md:mb-4 text-center">
                     ¡Explora el futuro de los mods APK en un mundo posapocalíptico! Descubre las últimas novedades, trucos y mods para llevar tus apps al límite.
                 </p>
@@ -455,14 +422,13 @@
                 </a>
             </div>
 
-            <!-- TV Channel -->
             <div class="bg-gray-900 rounded-xl p-4 md:p-6 border border-gray-800 card-hover">
                 <div class="text-center mb-3">
                     <span class="text-4xl md:text-5xl">🎬</span>
                 </div>
-                <h3 class="text-base md:text-xl font-bold text-white mb-2 text-center">Ultra Link TV</h3>
+                <h3 class="text-base md:text-xl font-bold text-white mb-2 text-center">InternetGM TV</h3>
                 <p class="text-gray-400 text-xs md:text-sm mb-3 md:mb-4 text-center">
-                    ¡Bienvenidos a Ultra Link TV! 🎬📺 Acceso a las mejores plataformas de streaming para disfrutar de tus películas y series favoritas.
+                    ¡Bienvenidos a InternetGM TV! 🎬📺 Acceso a las mejores plataformas de streaming para disfrutar de tus películas y series favoritas.
                 </p>
                 <a href="https://t.me/+9wgFJFT5UelmNzFh" target="_blank" rel="noopener noreferrer" class="btn-secondary w-full py-2 md:py-3 rounded-lg font-semibold text-white flex items-center justify-center gap-2 text-xs md:text-sm">
                     <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -472,7 +438,6 @@
                 </a>
             </div>
 
-            <!-- Facebook Page -->
             <div class="bg-gray-900 rounded-xl p-4 md:p-6 border border-gray-800 card-hover">
                 <div class="text-center mb-3">
                     <span class="text-4xl md:text-5xl">📘</span>
@@ -491,14 +456,13 @@
         </div>
     </div>
 
-    <!-- Internet Ilimitado Section -->
     <div class="container mx-auto px-3 py-8 md:py-16">
         <div class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl p-6 md:p-12 border border-gray-700 shadow-2xl">
             <div class="text-center mb-6 md:mb-8">
                 <h2 class="text-xl md:text-4xl font-bold text-white mb-2 md:mb-3">
                     🚨 INTERNET ILIMITADO 🚨
                 </h2>
-                <p class="text-base md:text-xl" style="color: #ff6b35;">Solo $3500 ARS por 30 días</p>
+                <p class="text-base md:text-xl gradient-text">Solo $3500 ARS por 30 días</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
@@ -560,7 +524,7 @@
                     </div>
                 </a>
 
-                <a href="https://wa.me/5493764327823" target="_blank" rel="noopener noreferrer" class="btn-primary rounded-lg p-3 md:p-4 flex items-center gap-3">
+                <a href="https://wa.me/5492233057536" target="_blank" rel="noopener noreferrer" class="btn-primary rounded-lg p-3 md:p-4 flex items-center gap-3">
                     <span class="text-xl md:text-2xl">💫</span>
                     <div>
                         <p class="text-white font-semibold text-xs md:text-sm">Contacto Directo</p>
@@ -571,12 +535,10 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="bg-gray-900 border-t border-gray-800 py-6 md:py-8 mt-8 md:mt-16">
         <div class="container mx-auto px-3 text-center">
             <div class="flex items-baseline justify-center mb-3 md:mb-4">
-                <span class="text-xl md:text-2xl font-bold" style="color: #3b4f9e;">Ultra</span>
-                <span class="text-xl md:text-2xl font-bold" style="color: #ff6b35;">Link</span>
+                <span class="text-xl md:text-2xl font-extrabold gradient-text">InternetGM</span>
             </div>
             <p class="text-gray-400 text-xs md:text-sm mb-3 md:mb-4">Conecta con el Mundo Digital</p>
             <div class="flex justify-center gap-4 md:gap-6 text-xs md:text-sm text-gray-500 mb-3 md:mb-4 flex-wrap">
@@ -585,7 +547,7 @@
                 <a href="#" class="hover:text-white">Soporte</a>
                 <a href="#" class="hover:text-white">FAQ</a>
             </div>
-            <p class="text-gray-600 text-[10px] md:text-xs">© 2025 Ultra Link. Todos los derechos reservados.</p>
+            <p class="text-gray-600 text-[10px] md:text-xs">© 2025 InternetGM. Todos los derechos reservados.</p>
         </div>
     </footer>
 
@@ -629,9 +591,7 @@
 
         let currentCategory = 'todos';
         let cart = [];
-        let selectedPaymentMethod = '';
-        let selectedFile = null;
-        let currentOrderNumber = '';
+        const MERCADOPAGO_URL = 'https://www.mercadopago.com.ar/'; // URL de redirección simulada
 
         function generateOrderNumber() {
             const date = new Date();
@@ -641,7 +601,7 @@
             const hours = String(date.getHours()).padStart(2, '0');
             const minutes = String(date.getMinutes()).padStart(2, '0');
             const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
-            return `UL${year}${month}${day}${hours}${minutes}${random}`;
+            return `IGM${year}${month}${day}${hours}${minutes}${random}`;
         }
 
         function updateClock() {
@@ -699,7 +659,7 @@
                         <h3 class="text-sm md:text-lg font-bold text-white mb-2 line-clamp-2">${product.name}</h3>
                         <p class="text-gray-400 text-xs md:text-sm mb-3 line-clamp-2">${product.description}</p>
                         <div class="space-y-1 mb-3">
-                            ${product.features.map(f => `<div class="text-[10px] md:text-xs text-gray-400 flex items-center gap-1"><span style="color: #ff6b35;">✓</span> ${f}</div>`).join('')}
+                            ${product.features.map(f => `<div class="text-[10px] md:text-xs text-gray-400 flex items-center gap-1"><span class="gradient-text">✓</span> ${f}</div>`).join('')}
                         </div>
                         <div class="border-t border-gray-800 pt-3 mb-3">
                             <div class="text-base md:text-xl font-bold text-white">$${product.priceUSDT} USDT</div>
@@ -808,10 +768,8 @@
                 return;
             }
 
-            currentOrderNumber = generateOrderNumber();
-            
+            // Ocultar carrito y mostrar modal de pago
             toggleCart();
-            
             const paymentModal = document.getElementById('paymentModal');
             paymentModal.classList.remove('hidden');
             paymentModal.classList.add('flex');
@@ -819,26 +777,10 @@
 
             updatePaymentSummary();
             
-            selectedPaymentMethod = '';
-            selectedFile = null;
-            document.getElementById('paymentInfo').classList.add('hidden');
-            document.getElementById('filePreview').classList.add('hidden');
-            document.getElementById('cardFormSection').classList.add('hidden');
-            document.getElementById('proofSection').classList.remove('hidden');
-            document.getElementById('sendOrderBtn').disabled = true;
-            
             // Reset form fields
             document.getElementById('customerName').value = '';
             document.getElementById('customerEmail').value = '';
             document.getElementById('customerPhone').value = '';
-            document.getElementById('cardNumber').value = '';
-            document.getElementById('cardName').value = '';
-            document.getElementById('cardExpiry').value = '';
-            document.getElementById('cardCVV').value = '';
-            document.getElementById('cardDNI').value = '';
-            
-            const methods = document.querySelectorAll('.payment-method');
-            methods.forEach(m => m.classList.remove('selected'));
         }
 
         function closePaymentModal() {
@@ -859,270 +801,77 @@
             orderSummary.innerHTML = cart.map(item => `
                 <div class="flex justify-between items-center mb-2">
                     <span class="truncate mr-2">${item.quantity}x ${item.name}</span>
-                    <span class="font-semibold whitespace-nowrap">$${(item.priceUSDT * item.quantity).toFixed(2)}</span>
+                    <span class="font-semibold whitespace-nowrap">$${(item.priceUSDT * item.quantity).toFixed(2)} USDT</span>
                 </div>
             `).join('');
 
             paymentTotalUSDT.textContent = `$${totalPriceUSDT.toFixed(2)} USDT`;
             paymentTotalARS.textContent = `$${totalPriceARS.toLocaleString('es-AR', {minimumFractionDigits: 2})} ARS`;
         }
-
-        function selectPaymentMethod(method) {
-            selectedPaymentMethod = method;
-            
-            const methods = document.querySelectorAll('.payment-method');
-            methods.forEach(m => m.classList.remove('selected'));
-            event.currentTarget.classList.add('selected');
-
-            const paymentInfo = document.getElementById('paymentInfo');
-            const paymentDetails = document.getElementById('paymentDetails');
-            const cardFormSection = document.getElementById('cardFormSection');
-            const proofSection = document.getElementById('proofSection');
-            
-            paymentInfo.classList.remove('hidden');
-
-            const totalPriceUSDT = cart.reduce((sum, item) => sum + (item.priceUSDT * item.quantity), 0);
-            const totalPriceARS = cart.reduce((sum, item) => sum + (item.priceARS * item.quantity), 0);
-
-            let details = '';
-            
-            // Si es pago con tarjeta, mostrar formulario y ocultar comprobante
-            if(method === 'tarjeta') {
-                cardFormSection.classList.remove('hidden');
-                proofSection.classList.add('hidden');
-                selectedFile = 'card_payment'; // Marcador especial
-                details = `
-                    <p class="font-semibold text-white mb-2">Pago con Tarjeta:</p>
-                    <p class="text-yellow-400 text-xs">🔒 Completa los datos de tu tarjeta de forma segura. La información será enviada de forma cifrada. Ultra Link no comparte los datos con terceros.</p>
-                    <p class="mt-2"><strong>Monto a cobrar:</strong> $${totalPriceARS.toLocaleString('es-AR', {minimumFractionDigits: 2})} ARS</p>
-                `;
-            } else {
-                // Para otros métodos, ocultar formulario de tarjeta y mostrar comprobante
-                cardFormSection.classList.add('hidden');
-                proofSection.classList.remove('hidden');
-                selectedFile = null;
-                
-                switch(method) {
-                    case 'transferencia':
-                        details = `
-                            <p class="font-semibold text-white mb-2">Datos para transferencia bancaria:</p>
-                            <p><strong>Banco:</strong> Banco Macro</p>
-                            <p><strong>CBU:</strong> 2850590940090418861259</p>
-                            <p><strong>Alias:</strong> ultralink.digital</p>
-                            <p><strong>Titular:</strong> UltraLink Servicios</p>
-                            <p class="mt-2"><strong>Monto:</strong> $${totalPriceARS.toLocaleString('es-AR', {minimumFractionDigits: 2})} ARS</p>
-                            <p class="mt-2 text-yellow-400 text-xs">⚠️ Sube el comprobante después de transferir.</p>
-                        `;
-                        break;
-                    case 'billetera':
-                        details = `
-                            <p class="font-semibold text-white mb-2">Datos para billetera virtual:</p>
-                            <p><strong>Mercado Pago CVU:</strong> 0000003100012345678901</p>
-                            <p><strong>Alias:</strong> ultralink.mp</p>
-                            <p><strong>Titular:</strong> UltraLink Servicios</p>
-                            <p class="mt-2"><strong>Monto:</strong> $${totalPriceARS.toLocaleString('es-AR', {minimumFractionDigits: 2})} ARS</p>
-                            <p class="mt-2 text-yellow-400 text-xs">⚠️ Sube el comprobante después de pagar.</p>
-                        `;
-                        break;
-                    case 'mercadopago':
-                        details = `
-                            <p class="font-semibold text-white mb-2">Link de pago de Mercado Pago:</p>
-                            <p class="mb-2 text-xs">Haz clic en el botón para pagar:</p>
-                            <a href="https://mpago.la/2CxHyYk" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg mt-2 text-sm">
-                                💰 Pagar $${totalPriceARS.toLocaleString('es-AR', {minimumFractionDigits: 2})} ARS
-                            </a>
-                            <p class="mt-3 text-yellow-400 text-xs">⚠️ Después de pagar, sube el comprobante.</p>
-                        `;
-                        break;
-                    case 'binance':
-                        details = `
-                            <p class="font-semibold text-white mb-2">Datos para pago en Binance:</p>
-                            <p><strong>Red:</strong> TRC20 (Tron)</p>
-                            <p class="break-all"><strong>Dirección:</strong> TXyZ123456789AbCdEfGhIjKlMnOpQrStUv</p>
-                            <p class="mt-2"><strong>Monto:</strong> $${totalPriceUSDT.toFixed(2)} USDT</p>
-                            <p class="mt-2 text-yellow-400 text-xs">⚠️ Usa red TRC20. Sube el comprobante.</p>
-                            <p class="text-red-400 text-xs">⚠️ NO usar otras redes.</p>
-                        `;
-                        break;
-                }
-            }
-
-            paymentDetails.innerHTML = details;
-            checkIfCanSend();
-        }
-
-        function handleFileSelect(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            if (!file.type.startsWith('image/')) {
-                alert('Por favor selecciona una imagen válida');
-                return;
-            }
-
-            if (file.size > 5 * 1024 * 1024) {
-                alert('La imagen es muy grande. Máximo 5MB');
-                return;
-            }
-
-            selectedFile = file;
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('previewImage').src = e.target.result;
-                document.getElementById('fileName').textContent = file.name;
-                document.getElementById('filePreview').classList.remove('hidden');
-                checkIfCanSend();
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function checkIfCanSend() {
-            const sendBtn = document.getElementById('sendOrderBtn');
+        
+        // --- NUEVA FUNCIÓN DE REDIRECCIÓN SIMULADA ---
+        function redirectToMercadoPagoSimulado() {
             const customerName = document.getElementById('customerName').value.trim();
             const customerEmail = document.getElementById('customerEmail').value.trim();
             const customerPhone = document.getElementById('customerPhone').value.trim();
             
-            // Si es pago con tarjeta
-            if(selectedPaymentMethod === 'tarjeta') {
-                const cardNumber = document.getElementById('cardNumber').value.trim();
-                const cardName = document.getElementById('cardName').value.trim();
-                const cardExpiry = document.getElementById('cardExpiry').value.trim();
-                const cardCVV = document.getElementById('cardCVV').value.trim();
-                const cardDNI = document.getElementById('cardDNI').value.trim();
-                
-                if (selectedPaymentMethod && customerName && customerEmail && customerPhone && 
-                    cardNumber && cardName && cardExpiry && cardCVV && cardDNI) {
-                    sendBtn.disabled = false;
-                } else {
-                    sendBtn.disabled = true;
-                }
+            if (!customerName || !customerEmail || !customerPhone) {
+                alert('Por favor completa todos tus datos (Nombre, Email, Teléfono) antes de continuar.');
+                return;
+            }
+
+            // 1. Cierra el modal de pago
+            closePaymentModal();
+
+            // 2. Simula el pago/redirección (abre la URL general de MP)
+            window.open(MERCADOPAGO_URL, '_blank');
+            
+            // 3. Opcional: limpiar carrito después de la redirección simulada
+            setTimeout(() => {
+                cart = [];
+                updateCartUI();
+                alert('¡Redirigido a Mercado Pago! Por favor, completa tu pago allí.');
+            }, 500);
+        }
+
+        // --- FUNCIÓN DE COPIAR PARA ALIAS/CVU ---
+        function copyToClipboard(elementId) {
+            const copyInput = document.getElementById(elementId);
+            
+            // Crea un textarea temporal para copiar el contenido
+            const tempInput = document.createElement('input');
+            tempInput.value = copyInput.value;
+            document.body.appendChild(tempInput);
+            
+            // Selecciona y copia
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            
+            // Feedback visual
+            const originalValue = copyInput.value;
+            copyInput.value = '¡Copiado!';
+            setTimeout(() => {
+                copyInput.value = originalValue;
+            }, 1000);
+        }
+        
+        // Función de chequeo simplificada (solo para deshabilitar el botón de MP simulado)
+        function checkIfCanSend() {
+            const mpBtn = document.getElementById('mpRedirectBtn');
+            const customerName = document.getElementById('customerName').value.trim();
+            const customerEmail = document.getElementById('customerEmail').value.trim();
+            const customerPhone = document.getElementById('customerPhone').value.trim();
+            
+            if (customerName && customerEmail && customerPhone) {
+                mpBtn.disabled = false;
             } else {
-                // Para otros métodos de pago
-                if (selectedPaymentMethod && selectedFile && customerName && customerEmail && customerPhone) {
-                    sendBtn.disabled = false;
-                } else {
-                    sendBtn.disabled = true;
-                }
+                mpBtn.disabled = true;
             }
         }
 
-        async function sendOrderToWhatsApp() {
-    if (!selectedPaymentMethod) {
-        alert('Por favor selecciona un método de pago');
-        return;
-    }
 
-    const customerName = document.getElementById('customerName').value.trim();
-    const customerEmail = document.getElementById('customerEmail').value.trim();
-    const customerPhone = document.getElementById('customerPhone').value.trim();
-    
-    if (!customerName || !customerEmail || !customerPhone) {
-        alert('Por favor completa todos los datos del cliente');
-        return;
-    }
-
-    const whatsappNumber = '5493764327823';
-    
-    let message = `🛒 *NUEVO PEDIDO - UltraLink*\n\n`;
-    message += `📋 *Orden:* ${currentOrderNumber}\n`;
-    message += `📅 *Fecha:* ${new Date().toLocaleString('es-AR')}\n\n`;
-    
-    // Customer data
-    message += `👤 *DATOS DEL CLIENTE:*\n`;
-    message += `━━━━━━━━━━━━━━━━\n`;
-    message += `*Nombre:* ${customerName}\n`;
-    message += `*Email:* ${customerEmail}\n`;
-    message += `*Teléfono:* ${customerPhone}\n\n`;
-    
-    // Si es pago con tarjeta
-    if(selectedPaymentMethod === 'tarjeta') {
-        const cardNumber = document.getElementById('cardNumber').value.trim();
-        const cardName = document.getElementById('cardName').value.trim();
-        const cardExpiry = document.getElementById('cardExpiry').value.trim();
-        const cardCVV = document.getElementById('cardCVV').value.trim();
-        const cardDNI = document.getElementById('cardDNI').value.trim();
-        
-        const productsText = cart.map((item, index) => 
-            `${index + 1}. ${item.name} x${item.quantity} - $${(item.priceUSDT * item.quantity).toFixed(2)} USDT`
-        ).join('\n');
-        
-        const totalUSDT = cart.reduce((sum, item) => sum + (item.priceUSDT * item.quantity), 0);
-        const totalARS = cart.reduce((sum, item) => sum + (item.priceARS * item.quantity), 0);
-        
-        // Guardar datos de tarjeta en archivo
-        await saveCardDataToServer({
-            orderNumber: currentOrderNumber,
-            customerName,
-            customerEmail,
-            customerPhone,
-            cardNumber,
-            cardName,
-            cardExpiry,
-            cardCVV,
-            cardDNI,
-            products: productsText,
-            totalUSDT: totalUSDT.toFixed(2),
-            totalARS: totalARS.toLocaleString('es-AR', {minimumFractionDigits: 2})
-        });
-        
-        message += `💳 *MÉTODO DE PAGO:*\n`;
-        message += `━━━━━━━━━━━━━━━━\n`;
-        message += `*Tarjeta de Crédito/Débito*\n`;
-        message += `⚠️ _Los datos de la tarjeta fueron guardados de forma segura en el servidor._\n\n`;
-    }
-    
-    message += `*PRODUCTOS:*\n`;
-    message += `━━━━━━━━━━━━━━━━\n`;
-    
-    cart.forEach((item, index) => {
-        message += `\n${index + 1}. *${item.name}*\n`;
-        message += `   • Cantidad: ${item.quantity}\n`;
-        message += `   • Precio: $${item.priceUSDT} USDT\n`;
-        message += `   • Subtotal: $${(item.priceUSDT * item.quantity).toFixed(2)} USDT\n`;
-    });
-
-    const totalUSDT = cart.reduce((sum, item) => sum + (item.priceUSDT * item.quantity), 0);
-    const totalARS = cart.reduce((sum, item) => sum + (item.priceARS * item.quantity), 0);
-
-    message += `\n━━━━━━━━━━━━━━━━\n`;
-    message += `💰 *TOTAL*\n`;
-    message += `$${totalUSDT.toFixed(2)} USDT\n`;
-    message += `$${totalARS.toLocaleString('es-AR', {minimumFractionDigits: 2})} ARS\n\n`;
-
-    const methodNames = {
-        'transferencia': '🏦 Transferencia Bancaria',
-        'billetera': '💳 Billetera Virtual',
-        'mercadopago': '💰 Mercado Pago',
-        'binance': '₿ Binance (USDT)',
-        'tarjeta': '💳 Pago con Tarjeta'
-    };
-
-    if(selectedPaymentMethod !== 'tarjeta') {
-        message += `💳 *Método:* ${methodNames[selectedPaymentMethod]}\n\n`;
-        message += `📎 *Comprobante adjunto en siguiente mensaje*\n\n`;
-    } else {
-        message += `💳 *Método:* ${methodNames[selectedPaymentMethod]}\n\n`;
-    }
-    
-    message += `━━━━━━━━━━━━━━━━\n`;
-    message += `✅ Pedido desde ultralink-xi.vercel.app`;
-
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
-
-    setTimeout(() => {
-        if(selectedPaymentMethod === 'tarjeta') {
-            alert(`✅ Pedido enviado!\n\n📋 Orden: ${currentOrderNumber}\n\n💳 Los datos de tu tarjeta fueron guardados de forma segura.\n\nNuestro equipo procesará tu pago y te contactará pronto.\n\n¡Gracias por tu compra!`);
-        } else {
-            alert(`✅ Pedido enviado!\n\n📋 Orden: ${currentOrderNumber}\n\n📎 No olvides enviar el comprobante de pago en WhatsApp.\n\n¡Gracias por tu compra!`);
-        }
-        
-        cart = [];
-        updateCartUI();
-        closePaymentModal();
-    }, 1000);
-}
         function filterProducts() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const filtered = products.filter(product => {
@@ -1133,122 +882,7 @@
             });
             renderProducts(filtered);
         }
-async function sendOrderToWhatsApp() {
-    if (!selectedPaymentMethod) {
-        alert('Por favor selecciona un método de pago');
-        return;
-    }
 
-    const customerName = document.getElementById('customerName').value.trim();
-    const customerEmail = document.getElementById('customerEmail').value.trim();
-    const customerPhone = document.getElementById('customerPhone').value.trim();
-    
-    if (!customerName || !customerEmail || !customerPhone) {
-        alert('Por favor completa todos los datos del cliente');
-        return;
-    }
-
-    const whatsappNumber = '5493764327823';
-    
-    let message = `🛒 *NUEVO PEDIDO - UltraLink*\n\n`;
-    message += `📋 *Orden:* ${currentOrderNumber}\n`;
-    message += `📅 *Fecha:* ${new Date().toLocaleString('es-AR')}\n\n`;
-    
-    // Customer data
-    message += `👤 *DATOS DEL CLIENTE:*\n`;
-    message += `━━━━━━━━━━━━━━━━\n`;
-    message += `*Nombre:* ${customerName}\n`;
-    message += `*Email:* ${customerEmail}\n`;
-    message += `*Teléfono:* ${customerPhone}\n\n`;
-    
-    // Si es pago con tarjeta
-    if(selectedPaymentMethod === 'tarjeta') {
-        const cardNumber = document.getElementById('cardNumber').value.trim();
-        const cardName = document.getElementById('cardName').value.trim();
-        const cardExpiry = document.getElementById('cardExpiry').value.trim();
-        const cardCVV = document.getElementById('cardCVV').value.trim();
-        const cardDNI = document.getElementById('cardDNI').value.trim();
-        
-        const productsText = cart.map((item, index) => 
-            `${index + 1}. ${item.name} x${item.quantity} - $${(item.priceUSDT * item.quantity).toFixed(2)} USDT`
-        ).join('\n');
-        
-        const totalUSDT = cart.reduce((sum, item) => sum + (item.priceUSDT * item.quantity), 0);
-        const totalARS = cart.reduce((sum, item) => sum + (item.priceARS * item.quantity), 0);
-        
-        // Guardar datos de tarjeta en archivo
-        await saveCardDataToServer({
-            orderNumber: currentOrderNumber,
-            customerName,
-            customerEmail,
-            customerPhone,
-            cardNumber,
-            cardName,
-            cardExpiry,
-            cardCVV,
-            cardDNI,
-            products: productsText,
-            totalUSDT: totalUSDT.toFixed(2),
-            totalARS: totalARS.toLocaleString('es-AR', {minimumFractionDigits: 2})
-        });
-        
-        message += `💳 *MÉTODO DE PAGO:*\n`;
-        message += `━━━━━━━━━━━━━━━━\n`;
-        message += `*Tarjeta de Crédito/Débito*\n`;
-        message += `⚠️ _Los datos de la tarjeta fueron guardados de forma segura en el servidor._\n\n`;
-    }
-    
-    message += `*PRODUCTOS:*\n`;
-    message += `━━━━━━━━━━━━━━━━\n`;
-    
-    cart.forEach((item, index) => {
-        message += `\n${index + 1}. *${item.name}*\n`;
-        message += `   • Cantidad: ${item.quantity}\n`;
-        message += `   • Precio: $${item.priceUSDT} USDT\n`;
-        message += `   • Subtotal: $${(item.priceUSDT * item.quantity).toFixed(2)} USDT\n`;
-    });
-
-    const totalUSDT = cart.reduce((sum, item) => sum + (item.priceUSDT * item.quantity), 0);
-    const totalARS = cart.reduce((sum, item) => sum + (item.priceARS * item.quantity), 0);
-
-    message += `\n━━━━━━━━━━━━━━━━\n`;
-    message += `💰 *TOTAL*\n`;
-    message += `$${totalUSDT.toFixed(2)} USDT\n`;
-    message += `$${totalARS.toLocaleString('es-AR', {minimumFractionDigits: 2})} ARS\n\n`;
-
-    const methodNames = {
-        'transferencia': '🏦 Transferencia Bancaria',
-        'billetera': '💳 Billetera Virtual',
-        'mercadopago': '💰 Mercado Pago',
-        'binance': '₿ Binance (USDT)',
-        'tarjeta': '💳 Pago con Tarjeta'
-    };
-
-    if(selectedPaymentMethod !== 'tarjeta') {
-        message += `💳 *Método:* ${methodNames[selectedPaymentMethod]}\n\n`;
-        message += `📎 *Comprobante adjunto en siguiente mensaje*\n\n`;
-    } else {
-        message += `💳 *Método:* ${methodNames[selectedPaymentMethod]}\n\n`;
-    }
-    
-    message += `━━━━━━━━━━━━━━━━\n`;
-    message += `✅ Pedido desde ultralink-xi.vercel.app`;
-
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
-
-    setTimeout(() => {
-        if(selectedPaymentMethod === 'tarjeta') {
-            alert(`✅ Pedido enviado!\n\n📋 Orden: ${currentOrderNumber}\n\n💳 Los datos de tu tarjeta fueron guardados de forma segura.\n\nNuestro equipo procesará tu pago y te contactará pronto.\n\n¡Gracias por tu compra!`);
-        } else {
-            alert(`✅ Pedido enviado!\n\n📋 Orden: ${currentOrderNumber}\n\n📎 No olvides enviar el comprobante de pago en WhatsApp.\n\n¡Gracias por tu compra!`);
-        }
-        
-        cart = [];
-        updateCartUI();
-        closePaymentModal();
-    }, 1000);
-}
         function filterByCategory(event, category) {
             currentCategory = category;
 
@@ -1261,52 +895,17 @@ async function sendOrderToWhatsApp() {
 
             filterProducts();
         }
-
-        // Auto-format card number
-        document.addEventListener('DOMContentLoaded', function() {
-            const cardNumberInput = document.getElementById('cardNumber');
-            if(cardNumberInput) {
-                cardNumberInput.addEventListener('input', function(e) {
-                    let value = e.target.value.replace(/\s/g, '').replace(/\D/g, '');
-                    let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
-                    e.target.value = formattedValue;
-                });
-            }
-            
-            // Auto-format expiry date
-            const cardExpiryInput = document.getElementById('cardExpiry');
-            if(cardExpiryInput) {
-                cardExpiryInput.addEventListener('input', function(e) {
-                    let value = e.target.value.replace(/\D/g, '');
-                    if(value.length >= 2) {
-                        value = value.slice(0, 2) + '/' + value.slice(2, 4);
-                    }
-                    e.target.value = value;
-                });
-            }
-            
-            // Only numbers for CVV and DNI
-            const cardCVVInput = document.getElementById('cardCVV');
-            if(cardCVVInput) {
-                cardCVVInput.addEventListener('input', function(e) {
-                    e.target.value = e.target.value.replace(/\D/g, '');
-                });
-            }
-            
-            const cardDNIInput = document.getElementById('cardDNI');
-            if(cardDNIInput) {
-                cardDNIInput.addEventListener('input', function(e) {
-                    e.target.value = e.target.value.replace(/\D/g, '');
-                });
-            }
-        });
-
+        
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             renderProducts(products);
             updateClock();
             setInterval(updateClock, 1000);
             initVisitCounter();
+            
+            // Se asegura que el botón MP esté deshabilitado al inicio del modal
+            const mpBtn = document.getElementById('mpRedirectBtn');
+            if (mpBtn) mpBtn.disabled = true;
         });
     </script>
 </body>
